@@ -55,7 +55,9 @@ class Student {
   }
 
   getFullInfo() {
-    console.log(`${this.firstName} ${this.secondName} (${this.gender}), ${this.contacts}. Student of university. Department "${this.university.department}" - faculty "${this.university.faculty}"`);
+    return Object.entries(this); // я так и не определился, в каком виде лучше выводить инфу, поэтому так и оставил в виде массива
+    // return Object.keys(this);
+    // return Object.values(this);
   }
 }
 
@@ -81,12 +83,9 @@ const student3 = new Student('E', 'N', 'female', '555-33-33', 'informatic', 'com
 
 function arrayInit() {
   const array = [];
-  array.push(0);
-  array.push(0);
   for (let i = 0; i < 25; i++) {
     array.push(Math.round(Math.random() * 100));
   }
-  array.push(0);
   return array;
 }
 
