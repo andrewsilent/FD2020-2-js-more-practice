@@ -21,15 +21,15 @@ function factorial(n) {
 // 2.3 Связать объекты между собой. т.е. прописать данные об факультете и кафедре для студента
 // 2.4 Реализовать функцию выводит на экран всю информацию о студенте
 
-const GENDER_LIST = ['male','female','unknown'];
+const GENDER_LIST = ['male', 'female', 'unknown'];
 
 class Student {
-  constructor(firstName, secondName, gender, contacts, univercity) {
+  constructor(firstName, secondName, gender, contacts, department, faculty) {
     this.firstName = firstName;
     this.secondName = secondName;
     this.gender = gender;
     this.contacts = contacts;
-    this.university = univercity;
+    this.univercity = new Univercity(department, faculty);
   }
 
   set gender(v) {
@@ -44,16 +44,16 @@ class Student {
     return this._gender;
   }
 
-  set university(v) {
+  set univercity(v) {
     this._univercity = v;
   }
 
-  get university() {
-    return this._university;
+  get univercity() {
+    return this._univercity;
   }
 
-  getFullInfo(){
-    console.log(`${this.firstName} ${this.secondName} (${this.gender}), ${this.contacts}. Student of univercity: ${this._university}`);
+  getFullInfo() {
+    console.log(`${this.firstName} ${this.secondName} (${this.gender}), ${this.contacts}. Student of univercity: ${this.univercity}`);
   }
 }
 
@@ -64,13 +64,50 @@ class Univercity {
   }
 }
 
-const univercity1 = new Univercity('informatic', 'computer technologies');
-const univercity2 = new Univercity('informatic', 'internet security');
+const student1 = new Student('A', 'W', 'male', '555-35-35', 'informatic', 'computer technologies');
+const student2 = new Student('B', 'S', 'male', '555-55-35', 'informatic', 'internet security');
+const student3 = new Student('E', 'N', 'female', '555-33-33', 'informatic', 'computer technologies');
 
-const student1 = new Student('A', 'W', 'male', '555-35-35');
-const student2 = new Student('B', 'S', 'male', '555-55-35');
-const student3 = new Student('E', 'N', 'female', '555-33-33');
 
-student1.univercity = univercity1;
-student2.univercity = univercity1;
-student3.univercity = univercity2;
+
+
+// 3.1 Создать числовой массив и проинициализировать его из 25 элементов.
+// 3.1*Инициализация с помощью случайных чисел
+// 3.2 Вывести элементы с четными индексами
+// 3.3 Вывести только четные элементы (четные числа делятся на 2 без остатка)
+// 3.4 Вывести индексы нулевых элементов (элемент равен нулю)
+// 3.5 Подсчитать количество нулевых элементов
+
+function arrayInit() {
+  const array = [];
+  array.push(0);
+  array.push(0);
+  for (let i = 0; i < 25; i++) {
+    array.push(Math.round(Math.random() * 100));
+  }
+  array.push(0);
+  return array;
+}
+
+const numArray = arrayInit();
+console.log(numArray);
+
+// 3.2
+const evenIndexes = numArray.filter((element, index) => index % 2);
+console.log(evenIndexes);
+
+// 3.3
+const evenElements = numArray.filter((element) => element % 2 === 0);
+console.log(evenElements);
+
+// 3.4
+const zeroElementIndexes = numArray.map((element, index) => {
+  if (element === 0) {
+    return index;
+  }
+}).filter((element) => element >= 0)
+console.log(zeroElementIndexes);
+
+// 3.5
+const zeroElementsCount = zeroElementIndexes.length;
+console.log(zeroElementsCount);
